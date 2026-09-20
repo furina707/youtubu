@@ -1,0 +1,58 @@
+# Outputs & Downloads (用户明确要求排除)
+outputs/
+*.mp4
+*.wav
+*.mp3
+*.mkv
+*.webm
+
+# Auto-generated cookies & sensitive session files
+.douyin_cookies.txt
+*.cookies.txt
+cookies.txt
+*.session
+*.token
+
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
