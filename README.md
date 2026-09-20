@@ -13,19 +13,29 @@
   - **实时桌面字幕**：支持系统音频/扬声器捕获及实时悬浮字幕叠加（Overlay）。
   - **命令行模式**：支持一键执行下载、转写、翻译和导出 SRT。
 
-## 一键部署（Linux / macOS 服务器）
+## 一键部署
 
-在服务器终端直接执行以下命令，全自动完成依赖安装与部署配置：
+### 🐧 Linux / macOS 服务器
 
+在终端执行以下命令：
 ```bash
 curl -fsSL https://raw.githubusercontent.com/furina707/youtubu/main/install.sh | bash
 ```
 
-> **自动特性**：
-> - 自动检测并安装系统依赖（`ffmpeg`, `git`, `python3` 等）
+### 🪟 Windows 系统
+
+在 **PowerShell** 窗口中直接执行以下一行命令即可自动完成部署：
+```powershell
+irm https://raw.githubusercontent.com/furina707/youtubu/main/install.ps1 | iex
+```
+
+> **或者通过批处理运行**：克隆仓库后直接双击 `install.bat`。
+>
+> **一键部署特性**：
+> - 自动检测 Python、Git 环境（未安装时引导或通过 winget 自动安装）
 > - 自动检测 NVIDIA GPU 硬件并配置 CUDA 12 驱动优化
 > - 针对国内网络自动配置 PyPI 与 HuggingFace 镜像加速
-> - 自动生成开箱即用的 `./run.sh` 启动脚本及全局 `youtubu` 命令
+> - 自动创建桌面端双击启动脚本：`start_tui.bat`（终端模式）、`start_gui.bat`（桌面图形模式）
 
 ---
 
