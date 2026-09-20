@@ -221,3 +221,31 @@ Write-Host "4. PowerShell / CMD 命令行直接调用:"
 Write-Host "   cd $installDir; .\run.bat `"https://www.youtube.com/watch?v=xxxx`" --src en --tgt zh" -ForegroundColor Cyan
 Write-Host ""
 
+# 自动启动逻辑
+Write-Host "-------------------------------------------------------" -ForegroundColor Gray
+Write-Host "准备就绪！按回车键立即启动 Web 服务，或按 Ctrl+C 退出..." -ForegroundColor Yellow
+$timeoutSeconds = 5
+Write-Host "将在 $timeoutSeconds 秒后自动为您启动 Web 控制台..." -ForegroundColor Cyan
+
+$autoStart = $true
+if ([System.Console]::IsInputRedirected -eq $false) {
+    # 交互模式，可按键选择
+    $count = $timeoutSeconds
+    while ($count -gt 0) {
+        if ([System.Console]::KeyAvailable) {
+            $key = [System.Console]::ReadKey($true)
+            break
+        }
+        Start-Sleep -Seconds 1
+        $count--
+    }
+}
+
+if ($autoStart) {
+    Write-Info "正在为您唤起浏览器并启动 Web 服务..."
+    Start-Process "http://127.0.0.1:8000"
+    Set-Location $installDir
+    & $venvPython web.py --host 0.0.0.0 --port 8000
+}
+
+

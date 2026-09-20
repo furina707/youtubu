@@ -203,3 +203,12 @@ echo -e "3. CLI 命令行直接处理视频:"
 echo -e "   ${CYAN}./run.sh \"<视频链接>\" --src en --tgt zh${NC}"
 echo ""
 
+# 自动启动
+echo -e "${YELLOW}-------------------------------------------------------${NC}"
+echo -e "部署完毕！将在 5 秒后自动启动 Web 服务（按 Ctrl+C 可取消）..."
+sleep 5
+info "正在启动 Web 浏览器控制台..."
+cd "$INSTALL_DIR"
+./run.sh --web
+
+

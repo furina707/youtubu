@@ -13,29 +13,30 @@
   - **实时桌面字幕**：支持系统音频/扬声器捕获及实时悬浮字幕叠加（Overlay）。
   - **命令行模式**：支持一键执行下载、转写、翻译和导出 SRT。
 
-## 一键部署
+## ⚡ 跨平台一键部署与启动 (全自动识别平台)
 
-### 🐧 Linux / macOS 服务器
+无论您的电脑/服务器是 Windows 还是 Linux / macOS，均支持一键全自动检测环境、部署依赖并直接启动：
 
-在终端执行以下命令：
-```bash
-curl -fsSL https://raw.githubusercontent.com/furina707/youtubu/main/install.sh | bash
-```
+### 🪟 Windows 用户（两种极简方式）：
+- **方式 1：双击运行**：下载/克隆项目后，直接双击 **`start.bat`**（自动检测环境，未安装自动安装，完成后直接启动并自动打开浏览器）。
+- **方式 2：PowerShell 一行命令**：
+  ```powershell
+  irm https://raw.githubusercontent.com/furina707/youtubu/main/install.ps1 | iex
+  ```
 
-### 🪟 Windows 系统
+### 🐧 Linux / macOS 用户（两种极简方式）：
+- **方式 1：终端脚本**：下载/克隆项目后，直接运行 **`./start.sh`**（自动检测环境与安装，完成后自动启动 Web 服务）。
+- **方式 2：终端一行命令**：
+  ```bash
+  curl -fsSL https://raw.githubusercontent.com/furina707/youtubu/main/install.sh | bash
+  ```
 
-在 **PowerShell** 窗口中直接执行以下一行命令即可自动完成部署：
-```powershell
-irm https://raw.githubusercontent.com/furina707/youtubu/main/install.ps1 | iex
-```
-
-> **或者通过批处理运行**：克隆仓库后直接双击 `install.bat`。
->
-> **一键部署特性**：
-> - 自动检测 Python、Git 环境（未安装时引导或通过 winget 自动安装）
-> - 自动检测 NVIDIA GPU 硬件并配置 CUDA 12 驱动优化
-> - 针对国内网络自动配置 PyPI 与 HuggingFace 镜像加速
-> - 自动创建桌面端双击启动脚本：`start_web.bat`（Web服务）、`start_tui.bat`（终端模式）、`start_gui.bat`（桌面图形模式）
+> **全自动特性**：
+> - 自动识别 Windows / Linux / macOS 操作系统架构；
+> - 自动检查并安装 Python、Git 与 FFmpeg 系统级依赖；
+> - 自动检测 NVIDIA GPU 并无缝匹配安装 CUDA 12.1 加速版 PyTorch；
+> - 自动检测中国大陆网络并切换清华大学与 HuggingFace 镜像加速；
+> - 部署完毕**全自动倒计时启动 Web 服务**，并自动唤起浏览器访问 `http://127.0.0.1:8000`！
 
 ---
 
