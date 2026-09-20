@@ -1,0 +1,19 @@
+# Core Video & Audio Processing
+yt-dlp>=2024.0.0
+imageio-ffmpeg>=0.4.9
+
+# Local Speech-to-Text (ASR)
+faster-whisper>=1.0.0
+
+# Local Machine Translation (NLLB-200)
+torch>=2.0.0
+transformers>=4.38.0
+sentencepiece>=0.2.0
+protobuf>=3.20.0
+
+# Terminal UI & Utilities
+colorama>=0.4.6
+
+# Optional / Desktop GUI (桌面端可选，服务器端无需安装)
+# PySide6>=6.5.0
+# soundcard>=0.4.3
