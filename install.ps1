@@ -185,7 +185,19 @@ if "%~1"=="" (
     python -m src.main %*
 )
 "@
-[System.IO.File]::WriteAllText("$installDir\run.bat", $runBat, [System.Text.Encoding]::UTF8)
+# 8.4 start_web.bat (WebUI 浏览器服务)
+$webBat = @"
+@echo off
+chcp 65001 >nul
+title youtubu - Web 浏览器服务
+cd /d "%~dp0"
+if exist "%~dp0venv\Scripts\activate.bat" call "%~dp0venv\Scripts\activate.bat"
+if not defined HF_ENDPOINT set HF_ENDPOINT=https://hf-mirror.com
+echo 启动 Web 服务中，请在浏览器打开: http://127.0.0.1:8000
+python web.py --host 0.0.0.0 --port 8000
+pause
+"@
+[System.IO.File]::WriteAllText("$installDir\start_web.bat", $webBat, [System.Text.Encoding]::UTF8)
 
 Write-Host ""
 Write-Success "======================================================="
@@ -195,12 +207,17 @@ Write-Host ""
 Write-Host "项目安装目录: $installDir" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "【快速启动方式】" -ForegroundColor Yellow
-Write-Host "1. 双击运行 TUI 终端模式:"
+Write-Host "1. 双击运行 Web 浏览器服务 (局域网/公网访问):"
+Write-Host "   $installDir\start_web.bat" -ForegroundColor Cyan
+Write-Host "   浏览器打开: http://127.0.0.1:8000" -ForegroundColor Green
+Write-Host ""
+Write-Host "2. 双击运行 TUI 终端面板:"
 Write-Host "   $installDir\start_tui.bat" -ForegroundColor Cyan
 Write-Host ""
-Write-Host "2. 双击运行 GUI 桌面图形模式:"
+Write-Host "3. 双击运行 GUI 桌面图形模式:"
 Write-Host "   $installDir\start_gui.bat" -ForegroundColor Cyan
 Write-Host ""
-Write-Host "3. PowerShell / CMD 命令行直接调用:"
+Write-Host "4. PowerShell / CMD 命令行直接调用:"
 Write-Host "   cd $installDir; .\run.bat `"https://www.youtube.com/watch?v=xxxx`" --src en --tgt zh" -ForegroundColor Cyan
 Write-Host ""
+

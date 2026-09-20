@@ -161,7 +161,11 @@ if [ -z "$HF_ENDPOINT" ]; then
     export HF_ENDPOINT="https://hf-mirror.com"
 fi
 
-if [ $# -eq 0 ]; then
+if [ "$1" = "--web" ]; then
+    shift
+    PORT="${1:-8000}"
+    python3 web.py --host 0.0.0.0 --port "$PORT"
+elif [ $# -eq 0 ]; then
     # 无参数默认启动 TUI 交互界面
     python3 tui.py
 else
@@ -184,17 +188,18 @@ echo "=======================================================${NC}"
 echo ""
 echo -e "安装路径: ${CYAN}$INSTALL_DIR${NC}"
 echo ""
-echo -e "${YELLOW}【启动方法】${NC}"
-echo -e "1. 快速启动 TUI 终端交互面板:"
+echo -e "${YELLOW}【启动方式】${NC}"
+echo -e "1. 启动 Web 浏览器服务 (公网/局域网访问):"
+echo -e "   ${CYAN}cd $INSTALL_DIR && ./run.sh --web${NC}"
+echo -e "   随后在浏览器访问: ${GREEN}http://<服务器IP>:8000${NC}"
+echo ""
+echo -e "2. 快速启动 TUI 终端交互面板:"
 echo -e "   ${CYAN}cd $INSTALL_DIR && ./run.sh${NC}"
 if command -v youtubu &>/dev/null; then
     echo -e "   或者直接在任何地方输入: ${CYAN}youtubu${NC}"
 fi
 echo ""
-echo -e "2. CLI 命令行直接处理视频:"
+echo -e "3. CLI 命令行直接处理视频:"
 echo -e "   ${CYAN}./run.sh \"<视频链接>\" --src en --tgt zh${NC}"
 echo ""
-echo -e "3. 推荐使用 tmux 保持后台常驻运行:"
-echo -e "   ${CYAN}tmux new -s youtubu${NC}"
-echo -e "   ${CYAN}cd $INSTALL_DIR && ./run.sh${NC}"
-echo ""
+
